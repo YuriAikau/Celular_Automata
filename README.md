@@ -5,7 +5,7 @@ In this project I created a cellular automata with the following rules:
 - If a live cell has more than 3 neighbours alive, it becomes a dead cell (simulating overpoulation)
 - If a dead cell has exactly 3 neighbours alive, it becomes an alive cell (simulation reproduction)
 
-In this example I've used the same rules as the Conway's Game of Life as described above.\
+In this example I've used the same rules as the Conway's Game of Life as described above.
 
 ## Graphic Interface
 

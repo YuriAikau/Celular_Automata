@@ -7,30 +7,36 @@ class Matrix:
         self.n_rows: int = n_rows
         self.matrix: list[int] = [0]*(n_rows*n_columns)
 
+    def __valid_position(self, row: int, column: int) -> bool:
+        if (row < 0) or (row >= self.n_rows):
+            logging.debug("Invalid Row")
+            return False
+        if (column < 0) or (column >= self.n_columns):
+            logging.debug("Invalid Column")
+            return False
+        return True
+
     def __pos(self, row: int, column: int) -> int:
         return (row * self.n_columns) + column
 
     def get_element(self, row: int, column: int) -> int:
-        if row >= self.n_rows:
-            logging.debug("Invalid Row")
+        if self.__valid_position(row,column):
+            pos: int = self.__pos(row,column)
+            return self.matrix[pos]
+        else:
             return -1
-        if column >= self.n_columns:
-            logging.debug("Invalid Column")
-            return -1
-
-        pos: int = self.__pos(row,column)
-        return self.matrix[pos]
 
     def set_element(self, row: int, column: int, element: int) -> None:
-        if row >= self.n_rows:
-            logging.debug("Invalid Row")
-            return
-        if column >= self.n_columns:
-            logging.debug("Invalid Column")
-            return
+        if self.__valid_position(row,column):
+            pos: int = self.__pos(row,column)
+            self.matrix[pos] = element
 
-        pos: int = self.__pos(row,column)
-        self.matrix[pos] = element
+    def toggle_element(self, row: int, column: int) -> None:
+        if self.__valid_position(row,column):
+            if self.get_element(row,column):
+                self.set_element(row,column,0)
+            else:
+                self.set_element(row,column,1)
 
     def __str__(self) -> str:
         string: str = ''
@@ -41,7 +47,7 @@ class Matrix:
         return string
 
     def cell_automata(self) -> None:
-        next_mat: Matrix = Matrix()
+        next_mat: Matrix = Matrix(self.n_rows, self.n_columns)
         for i in range(self.n_rows):
             for j in range(self.n_columns):
                 summ = 0
@@ -51,14 +57,14 @@ class Matrix:
                             summ += element
                 if self.get_element(i,j):
                     if (summ < 2) or (summ > 3) :
-                        next_mat.set_element(i,j,0)
+                        pass
                     else:
-                        next_mat.set_element(i,j,1)
+                        next_mat.toggle_element(i,j)
                 else:
                     if summ == 3:
-                        next_mat.set_element(i,j,1)
+                        next_mat.toggle_element(i,j)
                     else:
-                        next_mat.set_element(i,j,0)
+                        pass
         self.matrix = next_mat.matrix
 
 def main() -> None:

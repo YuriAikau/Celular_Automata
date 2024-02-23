@@ -5,11 +5,13 @@ from matrix import Matrix
 ROWS_HEIGHT = 10
 COLUMNS_WIDTH = 10
 WAIT_TIME = 200
+TITLE = "Cellular Automata"
 
 
 pg.init()
 screen: pg.Surface = pg.display.set_mode((WIDTH,HEIGHT))
 clock: pg.time.Clock = pg.time.Clock()
+pg.display.set_caption(TITLE)
 last_tick: int = -1000
 running: bool = True
 paused: bool = True
@@ -47,6 +49,10 @@ while running:
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_SPACE:
                 paused = not paused
+                if paused:
+                    pg.display.set_caption("Paused")
+                else:
+                    pg.display.set_caption(TITLE)
         if event.type == pg.MOUSEBUTTONDOWN:
             x,y = pg.mouse.get_pos()
             mat.toggle_element(y//ROWS_HEIGHT, x//COLUMNS_WIDTH)

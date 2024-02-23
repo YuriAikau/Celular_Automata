@@ -19,4 +19,12 @@ or
 ```
 pip3 install pygame
 ```
-![alt text](https://github.com/YuriAikau/Celular_Automata/new/main/images/test.gif)
+## Video example
+When you execute the program by running:
+```
+python3 cell.py
+```
+When the window pop up appears you can hit the `space` key to begin the simulation
+![](https://github.com/YuriAikau/Celular_Automata/blob/main/images/test.gif)
+While on the simulation you can pause it anytime by pressing the `space` key, the unpausing it by pressing `space` again. You can also toggle any given cell (alive or dead) by clicking in their respective square.\
+To quit you simply click on the 'X' button on the top of the window.

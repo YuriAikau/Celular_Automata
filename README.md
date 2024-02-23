@@ -7,7 +7,7 @@ In this project I created a cellular automata with the following rules:
 
 In this example I've used the same rules as the Conway's Game of Life as described above.
 
-## Graphic Interface
+## Graphical Interface
 
 For a graphical representation of the cellular automata I opted to use Pygame as the game can be represented as simple squares and a grid.\
 And that's the only external library necessary for this project, you can install pygame in your local machine by executing the following command in your terminal:
